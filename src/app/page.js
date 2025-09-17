@@ -1,32 +1,40 @@
 "use client"; // Marks this as a Client Component
 
 import { useState } from 'react';
-import { calculateHabitabilityScore } from '@/lib/scoring';
+import { calculateHabitabilityScore, isWithinBounds } from '@/lib/scoring';
 import testAddresses from '@/data/geocoding.json';
 
 export default function HomePage() {
-  // State for the input fields
   const [latitude, setLatitude] = useState('');
   const [longitude, setLongitude] = useState('');
-
-  // State to hold the score results
   const [scoreData, setScoreData] = useState(null);
+  const [error, setError] = useState(null);
 
-  // Function to handle the calculation
   const handleCalculate = () => {
+    setScoreData(null);
+    setError(null);
+
     const lat = parseFloat(latitude);
     const lon = parseFloat(longitude);
 
-    if (!isNaN(lat) && !isNaN(lon)) {
-      const result = calculateHabitabilityScore(lat, lon);
-      setScoreData(result);
-    } else {
-      alert("Please enter valid numbers for latitude and longitude.");
+    if (isNaN(lat) || isNaN(lon) ) {
+      setError("The input is incorrect please try valid input.");
+      return;
     }
+    
+    if (!isWithinBounds(lat, lon)) {
+      setError("The entered coordinates are outside the supported area.");
+      return;
+    }
+
+    const result = calculateHabitabilityScore(lat, lon);
+    setScoreData(result);
   };
   
-  // Function for the test location buttons
   const handleTestLocationClick = (lat, lon) => {
+    setScoreData(null);
+    setError(null);
+    
     setLatitude(lat.toString());
     setLongitude(lon.toString());
     const result = calculateHabitabilityScore(lat, lon);
@@ -37,10 +45,10 @@ export default function HomePage() {
     <main className="flex min-h-screen flex-col items-center p-8 sm:p-12 md:p-24 bg-gray-50">
       <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm mb-12">
         <h1 className="text-3xl sm:text-4xl font-bold text-gray-800 text-center">
-          Manhattan Habitability Scorer
+          Habitability Scorer
         </h1>
         <p className="text-center text-gray-600 mt-2">
-          Enter coordinates to evaluate the livability of a location.
+          Enter coordinates to evaluate the habitability of a location.
         </p>
       </div>
 
@@ -69,6 +77,13 @@ export default function HomePage() {
               placeholder="e.g., -74.0060"
             />
           </div>
+          
+          {error && (
+            <div className="p-3 text-sm text-red-700 bg-red-100 rounded-md">
+              {error}
+            </div>
+          )}
+
           <button
             onClick={handleCalculate}
             className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
@@ -117,3 +132,4 @@ export default function HomePage() {
     </main>
   );
 }
+

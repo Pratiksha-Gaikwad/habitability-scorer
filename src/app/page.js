@@ -53,7 +53,7 @@ export default function HomePage() {
       </div>
 
       <div className="w-full max-w-md bg-white p-8 rounded-xl shadow-lg">
-        {/* --- MANUAL INPUT SECTION --- */}
+        {/* Input section */}
         <div className="space-y-4">
           <div>
             <label htmlFor="latitude" className="block text-sm font-medium text-gray-700">Latitude</label>
@@ -92,7 +92,7 @@ export default function HomePage() {
           </button>
         </div>
 
-        {/* --- TEST LOCATIONS SECTION --- */}
+        {/* TEST LOCATIONS SECTION */}
         <div className="mt-8">
             <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider text-center">Or select a test location</h3>
             <div className="mt-4 grid grid-cols-2 gap-2">
@@ -109,7 +109,7 @@ export default function HomePage() {
         </div>
       </div>
       
-      {/* --- RESULTS DISPLAY SECTION --- */}
+      {/*  RESULTS DISPLAY SECTION */}
       {scoreData && (
         <div className="mt-12 w-full max-w-md bg-white p-8 rounded-xl shadow-lg animate-fade-in">
           <h2 className="text-2xl font-bold text-center text-gray-800">Habitability Score</h2>

@@ -42,7 +42,7 @@ export default function HomePage() {
   };
 
   return (
-    <main className="flex min-h-screen flex-col items-center p-8 sm:p-12 md:p-24 bg-gray-50">
+    <main className="flex min-h-screen flex-col items-center p-8 sm:p-12 md:p-24 bg-gray-50 relative">
       <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm mb-12">
         <h1 className="text-3xl sm:text-4xl font-bold text-gray-800 text-center">
           Habitability Scorer
@@ -133,6 +133,125 @@ export default function HomePage() {
           </div>
         </div>
       )}
+
+      {/* Score Guide Dropdown */}
+      <div className="w-full max-w-md mt-4">
+        <details className="bg-white rounded-xl shadow-lg">
+          <summary className="cursor-pointer p-4 rounded-t-xl flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span className="font-semibold text-gray-800">Score Guide</span>
+            </div>
+            <svg className="w-5 h-5 text-gray-500 transform transition-transform duration-200 group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </summary>
+
+          <div className="p-4 pt-2 text-sm border-t">
+            {/* Zone Scores */}
+            <div className="mb-4">
+              <div className="flex items-center gap-2 mb-2">
+                <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                <span className="font-medium text-gray-800">Zone Score (40%)</span>
+              </div>
+              <div className="grid grid-cols-2 gap-x-4 gap-y-1 pl-4 text-gray-600">
+                <div className="flex items-center gap-1">
+                  <svg className="w-3 h-3 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span>Air Quality</span>
+                </div>
+                <div className="flex items-center gap-1">
+                  <svg className="w-3 h-3 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span>Crime Rate</span>
+                </div>
+                <div className="flex items-center gap-1">
+                  <svg className="w-3 h-3 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span>School Rating</span>
+                </div>
+                <div className="flex items-center gap-1">
+                  <svg className="w-3 h-3 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span>Transit Access</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Proximity Scores */}
+            <div>
+              <div className="flex items-center gap-2 mb-2">
+                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                <span className="font-medium text-gray-800">Proximity Score (60%)</span>
+              </div>
+              <div className="grid grid-cols-2 gap-8 pl-4">
+                <div>
+                  <p className="font-medium text-gray-700 mb-1 flex items-center gap-1">
+                    <svg className="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                    </svg>
+                    Positive Factors
+                  </p>
+                  <ul className="space-y-1 text-gray-600">
+                    <li className="flex items-center gap-1">
+                      <svg className="w-3 h-3 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                      </svg>
+                      Parks & Recreation
+                    </li>
+                    <li className="flex items-center gap-1">
+                      <svg className="w-3 h-3 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                      </svg>
+                      Schools & Libraries
+                    </li>
+                    <li className="flex items-center gap-1">
+                      <svg className="w-3 h-3 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                      </svg>
+                      Healthcare & Stores
+                    </li>
+                  </ul>
+                </div>
+                <div>
+                  <p className="font-medium text-gray-700 mb-1 flex items-center gap-1">
+                    <svg className="w-4 h-4 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M20 12H4" />
+                    </svg>
+                    Negative Factors
+                  </p>
+                  <ul className="space-y-1 text-gray-600">
+                    <li className="flex items-center gap-1">
+                      <svg className="w-3 h-3 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                      Industrial Areas
+                    </li>
+                    <li className="flex items-center gap-1">
+                      <svg className="w-3 h-3 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                      Waste Facilities
+                    </li>
+                    <li className="flex items-center gap-1">
+                      <svg className="w-3 h-3 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                      High Crime Areas
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </details>
+      </div>
     </main>
   );
 }

@@ -19,7 +19,7 @@ The final habitability score is calculated using a weighted combination of two m
    - Crime Rate (2.8-6.7, lower better)
    - Median Rent ($3400-$5800, lower better)
    - School Quality (6.4-9.1, higher better)
-   - Transit Distance (0.05-0.45km, lower better)
+   - Transit Distance (1 mile, lower better)
    ```
 
    Each metric is normalized to a 0-100 scale using predefined ranges. For metrics where lower values are better (like crime rate), the normalized score is inverted (100 - normalized value).
@@ -124,6 +124,3 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - `features_poly.json`: Zone-based metrics
 - `geocoding.json`: Test locations
 
-## License
-
-MIT License

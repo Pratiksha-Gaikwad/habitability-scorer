@@ -94,15 +94,19 @@ export default function HomePage() {
 
         {/* TEST LOCATIONS SECTION */}
         <div className="mt-8">
-            <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider text-center">Or select a test location</h3>
+            <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider text-center">Or select a location</h3>
             <div className="mt-4 grid grid-cols-2 gap-2">
                 {testAddresses.slice(0, 4).map((addr) => (
                     <button 
                         key={addr.address}
                         onClick={() => handleTestLocationClick(addr.latitude, addr.longitude)}
-                        className="text-xs text-center py-2 px-2 border border-gray-200 rounded-md hover:bg-gray-100 focus:outline-none"
+                        className="relative text-xs text-center py-2 px-2 border border-gray-200 rounded-md hover:bg-gray-100 focus:outline-none group"
+                        title={`Lat: ${addr.latitude}, Long: ${addr.longitude}`}
                     >
-                        {addr.address.split(',')[0]}
+                        <span>{addr.address.split(',')[0]}</span>
+                        <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap pointer-events-none">
+                            {addr.latitude.toFixed(4)}, {addr.longitude.toFixed(4)}
+                        </div>
                     </button>
                 ))}
             </div>

@@ -1,4 +1,4 @@
-# Manhattan Habitability Scorer
+# Habitability Scorer
 
 A Next.js application that calculates habitability scores for locations in Manhattan based on various environmental, social, and infrastructure factors.
 
